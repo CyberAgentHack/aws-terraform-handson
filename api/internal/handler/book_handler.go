@@ -97,7 +97,7 @@ func (h *BookHandler) GetBooks(c echo.Context) error {
 
 	limitPlusOne := perPage + 1
 	books := []model.Book{}
-	listQuery := "SELECT id, title, author, created_at FROM books ORDER BY created_at DESC LIMIT ? OFFSET ?"
+	listQuery := "SELECT id, title, author, created_at, updated_at FROM books ORDER BY created_at DESC LIMIT ? OFFSET ?"
 
 	if err = h.db.Select(&books, listQuery, limitPlusOne, offset); err != nil {
 		slog.Error("Database error fetching books", slog.Any("error", err))
