@@ -26,6 +26,8 @@ resource "random_password" "bookshelf_db_write_user_password" {
 
 resource "aws_secretsmanager_secret" "bookshelf_db_password" {
   name = "/rds/bookshelf/bookshelf-password"
+  # destroy 後すぐ再作成できるよう削除猶予を設けない
+  recovery_window_in_days = 0
 
   tags = merge(
     {
